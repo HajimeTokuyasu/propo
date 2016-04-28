@@ -15,6 +15,13 @@
 #define _MAXSTICK_ 3
 
 
+//*******************************************
+//4FirstRobot_HajimeTokuyasu
+//STAT:BUG
+//MEMO:Sig_sent_always_'L'(alway_ wrong)
+//LAST:20160428
+//*******************************************
+
 int main (int argc, char *argv[]){
    int buttonData[_MAXBUTTON_];
    int stickData[_MAXSTICK_];
