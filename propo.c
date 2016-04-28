@@ -17,7 +17,7 @@
 
 int main (int argc, char *argv[]){
    int buttonData[_MAXBUTTON_];
-   int stichData[_MAXSTICK_];
+   int stickData[_MAXSTICK_];
    int buf;
 
    int fd_joy, fd_sock;
@@ -62,25 +62,44 @@ int main (int argc, char *argv[]){
    if (read(fd_joy,&event,sizeof(struct js_event)) < sizeof(struct js_event))continue;
    
 
-   switch (js_event.type & ~JS_EVENT_INIT){
+   switch (event.type & ~JS_EVENT_INIT){
       case JS_EVENT_AXIS:
          
-         buf  = (stickData[JSinfo.number] = JSinfo.value);
+         buf  = (stickData[event.number] = event.value);
          if (event.value < 0){
-            buf = 'L';
+            stickData[event.number] = 'L';
+            puts("L\n");
          }
          if (event.value == 0){
-            buf = 'K';
+            stickData[event.number] = 'K';
+            puts("K\n");
          }
-         if (event.value >0){
-            buf = 'R';
+         if (event.value > 0){
+            stickData[event.number] = 'R';
+            puts("R\n");
          }
+         buf = stickData[event.number];
+         puts("FRONTDATA__SEND\n");
          sendto(fd_sock, &buf, sizeof(char), 0, (struct sockaddr *) &svaddr, len);
          break;
          
       case JS_EVENT_BUTTON:
          
-         buttonData[JSinfo.number] = JSinfo.value;
+         switch (event.number){
+            case 8:
+               buttonData[event.number] = event.value;
+               puts("___FWD___\n");
+               break;
+            case 9:
+               buttonData[event.number] = event.value;
+               puts("_____BACK_____\n");
+               break;
+            default:
+               puts("__KEEP__");
+               
+         }
+         buf = buttonData[event.number];
+         puts("REARDATSA__SEND");
          sendto(fd_sock, &buf, sizeof(char), 0, (struct sockaddr *) &svaddr, len);
          break;
   }
