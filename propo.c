@@ -18,7 +18,7 @@
 //*******************************************
 //4FirstRobot_HajimeTokuyasu
 //STAT:BUG
-//MEMO:Sig_sent_always_'L'(alway_ wrong)
+//MEMO:Sig_sent_always_'L'(always_ wrong)
 //LAST:20160428
 //*******************************************
 
