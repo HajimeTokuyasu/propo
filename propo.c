@@ -17,9 +17,9 @@
 
 //*******************************************
 //4FirstRobot_HajimeTokuyasu
-//STAT:BUG
-//MEMO:Sig_sent_always_'L'(alway_ wrong)
-//LAST:20160428
+//
+//MEMO:
+//LAST:20160429
 //*******************************************
 
 int main (int argc, char *argv[]){
