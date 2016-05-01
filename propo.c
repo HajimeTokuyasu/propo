@@ -98,11 +98,11 @@ int main (int argc, char *argv[]){
        switch (event.value){
        case 1:
          switch (event.number){
-         case 8:
+         case 9:
            buf = 'F';
            puts("F");
            break;
-         case 9:
+         case 8:
            buf = 'B';
            puts("B");
            break;
